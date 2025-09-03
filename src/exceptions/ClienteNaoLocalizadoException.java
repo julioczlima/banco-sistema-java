@@ -1,6 +1,6 @@
 package exceptions;
 
-public class ClienteNaoLocalizadoException extends RuntimeException {
+public class ClienteNaoLocalizadoException extends Throwable {
     public ClienteNaoLocalizadoException(String s) {
     }
 }

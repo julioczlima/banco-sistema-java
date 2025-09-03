@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.ClienteInvalidoException;
 import exceptions.ClienteNaoLocalizadoException;
 import model.Cliente;
 
@@ -13,8 +14,13 @@ public class ClienteController {
     public ClienteController() {
     }
 
-    public void cadastrarCliente(Cliente cliente) {
-        clientes.add(cliente);
+    public void cadastrarCliente(Cliente cliente) throws ClienteInvalidoException {
+        if (cliente == null) {
+            throw new ClienteInvalidoException("Cliente inválido.");
+        } else {
+            clientes.add(cliente);
+        }
+
     }
 
     public void listarClientes() {
@@ -29,14 +35,10 @@ public class ClienteController {
     }
 
     public Cliente getByCpf(String cpf) {
-        try {
-            for (Cliente cliente : clientes) {
-                if (cliente.getCpf().equals(cpf)) {
-                    return cliente;
-                }
+        for (Cliente cliente : clientes) {
+            if (cliente.getCpf().equals(cpf)) {
+                return cliente;
             }
-        } catch (ClienteNaoLocalizadoException e) {
-            throw new ClienteNaoLocalizadoException("Não foi possível localizar o cliente pelo CPF.");
         }
         return null;
     }

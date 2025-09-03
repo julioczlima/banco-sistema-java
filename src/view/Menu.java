@@ -9,49 +9,44 @@ import java.util.Arrays;
 public class Menu {
     MenuController menuController = new MenuController();
 
-    ArrayList<String> opcoesMenu = new ArrayList<>(
-            Arrays.asList(
-                    "Criar Cliente",
-                    "Listar Clientes",
-                    "Criar Conta",
-                    "Listar Contas",
-                    "Sair"
-            ));
 
     public Menu() {
     }
 
-    public void exibirMenu() {
+    public void listarMenuPrincipal() {
+        ArrayList<String> opcoesMenuPrincipal = new ArrayList<>(
+                Arrays.asList(
+                        "Seção Clientes",
+                        "Seção Contas",
+                        "Sair"
+                ));
+
+        System.out.println("\n=== MENU ===");
+        for (int i = 0; i < opcoesMenuPrincipal.size(); i++) {
+            System.out.printf("%s - %s%n", (i + 1), opcoesMenuPrincipal.get(i));
+        }
+    }
+
+    public void exibirMenuPrincipal() {
+
         int numero;
         boolean executando = true;
 
         do {
-            listarMenu();
+            listarMenuPrincipal();
             numero = Integer.parseInt(menuController.usuarioInput("\nInforme um número: "));
 
             switch (numero) {
                 case 1:
-                    try {
-                        menuController.criarCliente();
-                    } catch (Exception e) {
-                        throw new ClienteInvalidoException("Não foi possível cadastrar o cliente.");
-                    }
+                    exibirMenuClientes();
                     break;
 
                 case 2:
-                    menuController.listarClientes();
+                    exibirMenuContas();
                     break;
 
                 case 3:
-                    menuController.criarConta();
-                    break;
-
-                case 4:
-                    menuController.listarContas();
-                    break;
-
-                case 5:
-                    System.out.println("\n-=X=- ENCERRANDO O PROGRAMA -=X=-");
+                    System.out.println("\n-X- ENCERRANDO PROGRAMA -X-");
                     executando = false;
                     break;
 
@@ -65,14 +60,127 @@ public class Menu {
 
     }
 
-    public void listarMenu() {
+    public void listarMenuClientes() {
+        ArrayList<String> opcoesMenuContas = new ArrayList<>(
+                Arrays.asList(
+                        "Cadastrar Cliente",
+                        "Listar Clientes",
+                        "Excluir Cliente",
+                        "Editar Cliente",
+                        "Sair"
+                ));
+
         System.out.println("\n=== MENU ===");
-        for (int i = 0; i < opcoesMenu.size(); i++) {
-            System.out.printf("%s - %s%n", (i + 1), opcoesMenu.get(i));
+        for (int i = 0; i < opcoesMenuContas.size(); i++) {
+            System.out.printf("%s - %s%n", (i + 1), opcoesMenuContas.get(i));
         }
     }
 
+    public void exibirMenuClientes() {
 
+        int numero;
+        boolean executando = true;
+
+        do {
+            listarMenuClientes();
+            numero = Integer.parseInt(menuController.usuarioInput("\nInforme um número: "));
+
+            switch (numero) {
+                case 1:
+                    menuController.criarCliente("CADASTRAR CLIENTE");
+                    break;
+
+                case 2:
+                    menuController.listarClientes("LISTAR CLIENTES");
+                    break;
+
+                case 3:
+                    System.out.println("Excluir Cliente ainda está em implementação.");
+                    ;
+                    break;
+
+                case 4:
+                    System.out.println("Editar Cliente ainda está em implementação.");
+                    ;
+                    break;
+
+                case 5:
+                    System.out.println("\n-=- RETORNANDO -=-");
+                    executando = false;
+                    break;
+
+                default:
+                    System.out.println("Opção inválida.");
+                    break;
+
+            }
+        } while (executando);
+
+
+    }
+
+
+    public void listarMenuContas() {
+        ArrayList<String> opcoesMenuContas = new ArrayList<>(
+                Arrays.asList(
+                        "Abrir Conta",
+                        "Listar Contas",
+                        "Depositar",
+                        "Sacar",
+                        "Transferir",
+                        "Sair"
+                ));
+
+        System.out.println("\n=== MENU ===");
+        for (int i = 0; i < opcoesMenuContas.size(); i++) {
+            System.out.printf("%s - %s%n", (i + 1), opcoesMenuContas.get(i));
+        }
+    }
+
+    public void exibirMenuContas() {
+
+        int numero;
+        boolean executando = true;
+
+        do {
+            listarMenuContas();
+            numero = Integer.parseInt(menuController.usuarioInput("\nInforme um número: "));
+
+            switch (numero) {
+                case 1:
+                    menuController.abrirConta("ABRIR CONTA");
+                    break;
+
+                case 2:
+                    menuController.listarContas("LISTAR CONTAS");
+                    break;
+
+                case 3:
+                    menuController.depositar("DEPOSITAR");
+                    break;
+
+                case 4:
+                    System.out.println("Sacar ainda está em implementação.");
+                    break;
+
+                case 5:
+                    System.out.println("Transferir ainda está em implementação.");
+                    break;
+
+                case 6:
+                    System.out.println("\n-==- RETORNANDO -==-");
+                    executando = false;
+                    break;
+
+                default:
+                    System.out.println("Opção inválida.");
+                    break;
+
+            }
+        } while (executando);
+
+
+    }
 
 
 }

@@ -1,7 +1,7 @@
 package model;
 
 public class Conta {
-    private int numero = 0;
+    private int numero;
     private double saldo;
     private Cliente titular;
 
@@ -11,21 +11,34 @@ public class Conta {
     }
 
     public Conta(Cliente titular) {
-        this.numero = setNumero();
+        this.titular = titular;
         this.saldo = 0;
+    }
+
+    public Conta(Cliente titular, int numero) {
+        super();
         this.titular = titular;
+        this.numero = numero+1;
     }
 
-    private int setNumero() {
-        return numero++;
+    public int getNumero() {
+        return numero;
     }
 
-    private void setSaldo(double saldo) {
-        this.saldo = saldo;
+    public Cliente getTitular() {
+        return titular;
     }
 
-    private void setTitular(Cliente titular) {
-        this.titular = titular;
+    public void depositar(double valor) {
+        this.saldo += valor;
+    }
+
+    public void sacar(double valor) {
+        if (saldo >= valor
+                && saldo > 0
+                && saldo - valor >= 0) {
+            this.saldo -= valor;
+        }
     }
 
     @Override
