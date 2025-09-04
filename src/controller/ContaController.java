@@ -1,6 +1,7 @@
 package controller;
 
 import exceptions.ContaInvalidaException;
+import exceptions.SaqueInvalidoException;
 import model.Cliente;
 import model.Conta;
 
@@ -36,11 +37,37 @@ public class ContaController {
     }
 
     // TODO metodo sacar
-    public void sacar(int numeroConta, double saldo) {
-        contas.get(numeroConta).sacar(saldo);
+    public void sacar(int numeroConta, double valor) throws ContaInvalidaException {
+        var conta =  getByContaId(numeroConta);
+
+        if (conta == null) {
+            throw new ContaInvalidaException("Numero da conta não encontrado.");
+        } else {
+            try {
+                conta.sacar(valor);
+            } catch (SaqueInvalidoException e) {
+                System.out.println("Erro ao sacar da conta: " + e.getMessage());
+            }
+        }
     }
 
     // TODO metodo transferir
+    public void transferir(int numeroContaSaida, int numeroContaEntrada, double valor) throws ContaInvalidaException {
+        var contaSaida =  getByContaId(numeroContaSaida);
+        var contaEntrada =  getByContaId(numeroContaEntrada);
+
+        if (contaSaida == null || contaEntrada == null) {
+            throw new ContaInvalidaException("Numero da conta não encontrado.");
+        } else {
+            try {
+                contaSaida.sacar(valor);
+                contaEntrada.depositar(valor);
+            } catch (SaqueInvalidoException e) {
+                System.out.println("Erro ao transferir da conta: " + e.getMessage());
+            }
+        }
+
+    }
 
 
     public Conta getByContaId(int numero) {

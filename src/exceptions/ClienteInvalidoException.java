@@ -1,6 +1,6 @@
 package exceptions;
 
-public class ClienteInvalidoException extends Throwable {
+public class ClienteInvalidoException extends Exception {
     public ClienteInvalidoException(String s) {
 
     }

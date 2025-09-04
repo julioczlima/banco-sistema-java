@@ -160,11 +160,11 @@ public class Menu {
                     break;
 
                 case 4:
-                    System.out.println("Sacar ainda está em implementação.");
+                    menuController.sacar("SACAR");
                     break;
 
                 case 5:
-                    System.out.println("Transferir ainda está em implementação.");
+                    menuController.transferir("TRANSFERIR");
                     break;
 
                 case 6:

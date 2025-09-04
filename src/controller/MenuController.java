@@ -69,9 +69,35 @@ public class MenuController {
     }
 
     // TODO metodo sacar
+    public void sacar(String texto) {
+        mensagemHeadLineMenu(texto);
+        int numeroConta = Integer.parseInt(usuarioInput("Informe o numero da conta a ser sacado: "));
+        double valorSaque =  Double.parseDouble(usuarioInput("Informe o valor a ser sacado: "));
+
+        try {
+            contaController.sacar(numeroConta, valorSaque);
+        } catch (ContaInvalidaException e) {
+            System.out.println("Erro ao sacar da conta: " + e.getMessage());
+        }
+
+    }
 
 
     // TODO metodo transferir
+    public void transferir(String texto) {
+        mensagemHeadLineMenu(texto);
+        int contaSaida = Integer.parseInt(usuarioInput("Informe o numero da conta a transferir: "));
+        int contaEntrada = Integer.parseInt(usuarioInput("Informe o valor da conta a receber: "));
+        double valor = Double.parseDouble(usuarioInput("Informe o valor a transferir: "));
+
+        try {
+            contaController.transferir(contaSaida, contaEntrada, valor);
+        } catch (ContaInvalidaException e) {
+            System.out.println("Erro ao transferir da conta: " + e.getMessage());;
+        }
+
+    }
+
 
     public String usuarioInput(String texto) {
         System.out.println(texto);

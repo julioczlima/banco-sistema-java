@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.SaqueInvalidoException;
+
 public class Conta {
     private int numero;
     private double saldo;
@@ -33,10 +35,17 @@ public class Conta {
         this.saldo += valor;
     }
 
-    public void sacar(double valor) {
-        if (saldo >= valor
-                && saldo > 0
-                && saldo - valor >= 0) {
+    public void sacar(double valor) throws SaqueInvalidoException {
+
+        if (this.saldo == 0) {
+            throw new SaqueInvalidoException("A conta deve possuir algum valor para conseguir sacar.");
+        } else if (valor < 0) {
+            throw new SaqueInvalidoException("O valor a ser sacado deve ser superior a zero.");
+        } else if (this.saldo < valor) {
+            throw new SaqueInvalidoException("O valor a ser sacado não pode ultrapassar o valor do saldo.");
+        } else if (this.saldo - valor < 0) {
+            throw new SaqueInvalidoException("O valor do saque não pode deixar o saldo negativo.");
+        } else {
             this.saldo -= valor;
         }
     }
