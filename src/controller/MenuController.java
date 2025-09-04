@@ -54,7 +54,6 @@ public class MenuController {
         contaController.listarContas();
     }
 
-    // TODO metodo depositar
     public void depositar(String texto) {
         mensagemHeadLineMenu(texto);
         int numeroConta = Integer.parseInt(usuarioInput("Informe o numero da conta a ser depositada: "));
@@ -68,7 +67,6 @@ public class MenuController {
 
     }
 
-    // TODO metodo sacar
     public void sacar(String texto) {
         mensagemHeadLineMenu(texto);
         int numeroConta = Integer.parseInt(usuarioInput("Informe o numero da conta a ser sacado: "));
@@ -82,8 +80,6 @@ public class MenuController {
 
     }
 
-
-    // TODO metodo transferir
     public void transferir(String texto) {
         mensagemHeadLineMenu(texto);
         int contaSaida = Integer.parseInt(usuarioInput("Informe o numero da conta a transferir: "));

@@ -7,7 +7,6 @@ public class Conta {
     private double saldo;
     private Cliente titular;
 
-    // TODO métodos depositar, transferir e sacar
 
     public Conta() {
     }

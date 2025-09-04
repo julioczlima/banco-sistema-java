@@ -24,7 +24,6 @@ public class ContaController {
         contas.forEach(System.out::println);
     }
 
-    // TODO metodo depositar
     public void depositar(int numeroConta, double saldo) throws ContaInvalidaException {
         var conta = getByContaId(numeroConta);
 
@@ -36,7 +35,6 @@ public class ContaController {
 
     }
 
-    // TODO metodo sacar
     public void sacar(int numeroConta, double valor) throws ContaInvalidaException {
         var conta =  getByContaId(numeroConta);
 
@@ -51,7 +49,6 @@ public class ContaController {
         }
     }
 
-    // TODO metodo transferir
     public void transferir(int numeroContaSaida, int numeroContaEntrada, double valor) throws ContaInvalidaException {
         var contaSaida =  getByContaId(numeroContaSaida);
         var contaEntrada =  getByContaId(numeroContaEntrada);
