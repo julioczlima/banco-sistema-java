@@ -1,6 +1,6 @@
 package exceptions;
 
-public class DepositoInvalidoException extends RuntimeException {
+public class DepositoInvalidoException extends Exception {
     public DepositoInvalidoException(String erroAoDepositar) {
     }
 }

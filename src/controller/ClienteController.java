@@ -15,23 +15,25 @@ public class ClienteController {
     }
 
     public void cadastrarCliente(Cliente cliente) throws ClienteInvalidoException {
-        if (cliente == null) {
+        if (cliente == null
+                || cliente.getNome() == null
+                || cliente.getCpf() == null) {
             throw new ClienteInvalidoException("Cliente inválido.");
-        } else {
-            clientes.add(cliente);
         }
 
+        if (getByCpf(cliente.getCpf()) != null) {
+            throw new ClienteInvalidoException("CPF já cadastrado.");
+        }
+
+        clientes.add(cliente);
     }
 
     public void listarClientes() {
         if (clientes.isEmpty()) {
             System.out.println("Nenhum cliente encontrado!");
+        } else {
+            clientes.forEach(System.out::println);
         }
-
-        clientes.forEach(cliente -> {
-            System.out.printf("Cliente: %s | CPF: %s | Idade: %s%n",
-                    cliente.getNome(), cliente.getCpf(), cliente.getIdade());
-        });
     }
 
     public Cliente getByCpf(String cpf) {

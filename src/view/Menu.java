@@ -1,7 +1,7 @@
 package view;
 
 import controller.MenuController;
-import exceptions.ClienteInvalidoException;
+import exceptions.InputInvalidoException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,12 +29,16 @@ public class Menu {
 
     public void exibirMenuPrincipal() {
 
-        int numero;
+        int numero = 0;
         boolean executando = true;
 
         do {
             listarMenuPrincipal();
-            numero = Integer.parseInt(menuController.usuarioInput("\nInforme um número: "));
+            try {
+                numero = Integer.parseInt(menuController.usuarioInput("\nInforme um número: "));
+            } catch (InputInvalidoException | NumberFormatException e) {
+                System.out.println("O valor inserido é inválido: " + e.getMessage());
+            }
 
             switch (numero) {
                 case 1:
@@ -78,16 +82,20 @@ public class Menu {
 
     public void exibirMenuClientes() {
 
-        int numero;
+        int numero = 0;
         boolean executando = true;
 
         do {
             listarMenuClientes();
-            numero = Integer.parseInt(menuController.usuarioInput("\nInforme um número: "));
+            try {
+                numero = Integer.parseInt(menuController.usuarioInput("\nInforme um número: "));
+            } catch (InputInvalidoException | NumberFormatException e) {
+                System.out.println("O valor inserido é inválido: " + e.getMessage());
+            }
 
             switch (numero) {
                 case 1:
-                    menuController.criarCliente("CADASTRAR CLIENTE");
+                    menuController.cadastrarCliente("CADASTRAR CLIENTE");
                     break;
 
                 case 2:
@@ -139,12 +147,16 @@ public class Menu {
 
     public void exibirMenuContas() {
 
-        int numero;
+        int numero = 0;
         boolean executando = true;
 
         do {
             listarMenuContas();
-            numero = Integer.parseInt(menuController.usuarioInput("\nInforme um número: "));
+            try {
+                numero = Integer.parseInt(menuController.usuarioInput("\nInforme um número: "));
+            } catch (InputInvalidoException | NumberFormatException e) {
+                System.out.println("O valor inserido é inválido: " + e.getMessage());
+            }
 
             switch (numero) {
                 case 1:
