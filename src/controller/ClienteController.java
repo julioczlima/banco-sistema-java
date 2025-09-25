@@ -21,7 +21,7 @@ public class ClienteController {
             throw new ClienteInvalidoException("Cliente inválido.");
         }
 
-        if (getByCpf(cliente.getCpf()) != null) {
+        if (getByCpf(cliente.getCpf()).isPresent()) {
             throw new ClienteInvalidoException("CPF já cadastrado.");
         }
 
@@ -36,13 +36,10 @@ public class ClienteController {
         }
     }
 
-    public Cliente getByCpf(String cpf) {
-        for (Cliente cliente : clientes) {
-            if (cliente.getCpf().equals(cpf)) {
-                return cliente;
-            }
-        }
-        return null;
+    public Optional<Cliente> getByCpf(String cpf) {
+        return clientes.stream()
+                .filter(cliente -> cliente.getCpf().equals(cpf))
+                .findFirst();
     }
 
 }

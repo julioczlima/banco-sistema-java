@@ -51,7 +51,6 @@ public class Conta {
     }
 
     public void transferir (Conta destino, double valor) throws TransferenciaInvalidaException {
-        // TODO fazer método
         if (this.saldo == 0) {
             throw new TransferenciaInvalidaException("O saldo da conta está zerado.");
         }

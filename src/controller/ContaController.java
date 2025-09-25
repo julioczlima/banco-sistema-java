@@ -13,7 +13,7 @@ public class ContaController {
 
     public void abrirConta(Cliente cliente) throws ContaInvalidaException {
         if (cliente == null) {
-            throw new ContaInvalidaException("Cliente invalido.");
+            throw new ContaInvalidaException();
         }
 
         contas.add(new Conta(cliente));
@@ -57,7 +57,7 @@ public class ContaController {
 
     }
 
-    public void transferir(int numeroContaSaida, int numeroContaEntrada, double valor) throws ContaInvalidaException {
+    public void transferir(int numeroContaSaida, int numeroContaEntrada, double valor) throws ContaInvalidaException, TransferenciaInvalidaException {
         var contaSaida = getByContaId(numeroContaSaida);
         var contaEntrada = getByContaId(numeroContaEntrada);
 
@@ -65,11 +65,8 @@ public class ContaController {
             throw new ContaInvalidaException("Numero da conta não encontrado.");
         }
 
-        try {
-            contaSaida.get().transferir(contaEntrada.get(), valor);
-        } catch (TransferenciaInvalidaException e) {
-            System.out.println("Erro ao transferir: " + e.getMessage());
-        }
+
+        contaSaida.get().transferir(contaEntrada.get(), valor);
 
     }
 

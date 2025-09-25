@@ -34,8 +34,15 @@ public class Cliente {
     private void setCpf(String cpf) throws DadoInvalidoException {
 
         if (cpf == null || cpf.isEmpty()) {
-            throw new DadoInvalidoException("CPF inválido.");
+            throw new DadoInvalidoException("CPF inválido - Nulo.");
         }
+
+        try {
+            Integer cpfEmNumeros = Integer.parseInt(cpf);
+        } catch (NumberFormatException e) {
+            throw new DadoInvalidoException("CPF Inválido - Informar somente números.");
+        }
+
 
         this.cpf = cpf;
     }

@@ -13,6 +13,10 @@ public class Menu {
     public Menu() {
     }
 
+    public void adicionarIniciais() {
+        menuController.adicionarIniciais();
+    }
+
     public void listarMenuPrincipal() {
         ArrayList<String> opcoesMenuPrincipal = new ArrayList<>(
                 Arrays.asList(
@@ -35,7 +39,7 @@ public class Menu {
         do {
             listarMenuPrincipal();
             try {
-                numero = Integer.parseInt(menuController.usuarioInput("\nInforme um número: "));
+                numero = menuController.lerInteiro("\nInforme um número: ");
             } catch (InputInvalidoException | NumberFormatException e) {
                 System.out.println("O valor inserido é inválido: " + e.getMessage());
             }
@@ -71,7 +75,7 @@ public class Menu {
                         "Listar Clientes",
                         "Excluir Cliente",
                         "Editar Cliente",
-                        "Sair"
+                        "Retornar"
                 ));
 
         System.out.println("\n=== MENU ===");
@@ -88,7 +92,7 @@ public class Menu {
         do {
             listarMenuClientes();
             try {
-                numero = Integer.parseInt(menuController.usuarioInput("\nInforme um número: "));
+                numero = menuController.lerInteiro("\nInforme um número: ");
             } catch (InputInvalidoException | NumberFormatException e) {
                 System.out.println("O valor inserido é inválido: " + e.getMessage());
             }
@@ -136,7 +140,7 @@ public class Menu {
                         "Depositar",
                         "Sacar",
                         "Transferir",
-                        "Sair"
+                        "Retornar"
                 ));
 
         System.out.println("\n=== MENU ===");
@@ -153,7 +157,7 @@ public class Menu {
         do {
             listarMenuContas();
             try {
-                numero = Integer.parseInt(menuController.usuarioInput("\nInforme um número: "));
+                numero = menuController.lerInteiro("\nInforme um número: ");
             } catch (InputInvalidoException | NumberFormatException e) {
                 System.out.println("O valor inserido é inválido: " + e.getMessage());
             }
